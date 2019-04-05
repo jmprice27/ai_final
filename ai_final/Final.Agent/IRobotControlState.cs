@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Numerics;
+using Final.Common;
+using Final.Warehouse;
 
-namespace Final.Common
+namespace Final.Agent
 {
-    public interface ISystemState
+    public interface IRobotControlState
     {
         List<IPosition> RobotPositions { get; }
         List<IWaypoint> RobotDestinations { get; }

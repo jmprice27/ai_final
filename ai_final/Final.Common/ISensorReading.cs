@@ -6,5 +6,7 @@ namespace Final.Common
 {
     public interface ISensorReading
     {
+        float Distance { get; }
+        float AngleRadians { get; }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Final.Warehouse
 {
-    interface IRoute
+    public interface IWaypoint : INode
     {
+
     }
 }

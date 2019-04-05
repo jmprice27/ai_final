@@ -5,4 +5,8 @@
     <Configurations>Debug;Release;CI</Configurations>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Final.Common\Final.Common.csproj" />
+  </ItemGroup>
+
 </Project>

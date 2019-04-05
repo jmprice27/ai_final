@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Final.Common\Final.Common.csproj" />
+    <ProjectReference Include="..\Final.Warehouse\Final.Warehouse.csproj" />
+  </ItemGroup>
+
 </Project>

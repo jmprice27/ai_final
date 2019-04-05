@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Final.Common
 {
-    public interface IWaypoint
+    public interface INamed
     {
+        string Name { get; }
+
+        string Id { get; }
     }
 }
