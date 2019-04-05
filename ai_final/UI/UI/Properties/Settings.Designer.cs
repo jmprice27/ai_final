@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ai_final.Properties
+namespace UI.Properties
 {
 
 

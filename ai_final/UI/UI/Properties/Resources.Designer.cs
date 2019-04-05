@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ai_final.Properties
+namespace UI.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace ai_final.Properties
             {
                 if( ( resourceMan == null ) )
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager( "ai_final.Properties.Resources", typeof( Resources ).Assembly );
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager( "UI.Properties.Resources", typeof( Resources ).Assembly );
                     resourceMan = temp;
                 }
                 return resourceMan;

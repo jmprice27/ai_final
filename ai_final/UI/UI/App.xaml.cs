@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ai_final
+namespace UI
 {
     /// <summary>
     /// Interaction logic for App.xaml
