@@ -3,6 +3,7 @@ solution: ai_final/ai_final.sln
 mono: none
 dotnet: 2.1.602
 script:
-  - dotnet restore
+  - cd ai_final
+  - dotnet restore 
   - dotnet build
   - dotnet test
