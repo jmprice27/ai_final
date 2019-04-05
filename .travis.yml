@@ -1,5 +1,5 @@
 language: csharp
-solution: ai_final.sln
+solution: ai_final/ai_final.sln
 mono: none
 dotnet: 2.1.602
 script:
