@@ -4,6 +4,6 @@ mono: none
 dotnet: 2.1.602
 script:
   - cd ai_final
-  - dotnet restore -c CI
+  - dotnet restore
   - dotnet build -c CI
   - dotnet test -c CI
