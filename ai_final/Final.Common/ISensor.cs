@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Final.Common
 {
-    interface ISensor
+    internal interface ISensor
     {
-        IReadOnlyCollection<ISensorReading> SensorHits { get; }
+        SensorOrientation Orientation { get; }
 
-        SensorOrientation Orientation { get;  }
+        IReadOnlyCollection<ISensorReading> SensorHits { get; }
     }
 }

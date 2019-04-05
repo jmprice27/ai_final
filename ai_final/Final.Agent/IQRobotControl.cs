@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Final.Agent
+﻿namespace Final.Agent
 {
-    class IQRobotControl
+    internal class IQRobotControl
     {
     }
 }

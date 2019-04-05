@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Final.Agent
+﻿namespace Final.Agent
 {
-    interface IWorker : IAgent
+    internal interface IWorker : IAgent
     {
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Final.Agent
+﻿namespace Final.Agent
 {
-    interface IRobotControl : IAgent
+    internal interface IRobotControl : IAgent
     {
     }
 }

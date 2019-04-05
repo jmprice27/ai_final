@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Final.Common;
+﻿using Final.Common;
 
 namespace Final.Agent
 {
-    interface IAgent
+    internal interface IAgent
     {
         IPosition Position { get; }
 

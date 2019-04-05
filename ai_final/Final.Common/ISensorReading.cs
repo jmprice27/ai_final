@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Final.Common
+﻿namespace Final.Common
 {
     public interface ISensorReading
     {
-        float Distance { get; }
         float AngleRadians { get; }
+
+        float Distance { get; }
     }
 }
