@@ -2,8 +2,6 @@
 {
     public interface INamed
     {
-        string Id { get; }
-
-        string Name { get; }
+        int Id { get; }
     }
 }
