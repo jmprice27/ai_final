@@ -1,6 +1,6 @@
 ﻿namespace Final.Agent
 {
-    internal class IQRobotControl
+    internal interface IAgentAction
     {
     }
 }

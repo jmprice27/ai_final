@@ -7,5 +7,7 @@ namespace Final.Agent
         IPosition Position { get; }
 
         IRoute Route { get; }
+
+        IAgentAction Action { get; }
     }
 }
