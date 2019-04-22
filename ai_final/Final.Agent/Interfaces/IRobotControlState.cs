@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Final.Common;
 using Final.Warehouse;
 
@@ -9,15 +10,15 @@ namespace Final.Agent
     {
         double DemandedThroughput { get; }
 
-        List<IWaypoint> RobotDestinations { get; }
+        List<Node> RobotDestinations { get; }
 
-        List<IPosition> RobotPositions { get; }
+        List<Vector2> RobotPositions { get; }
 
-        List<ISensorReading> Sensors { get; }
+        List<SensorReading> Sensors { get; }
 
         DateTime Time { get; }
 
-        Dictionary<IPosition, double> WorkerHeatmap { get; }
+        Dictionary<Vector2, double> WorkerBeliefs { get; }
 
         double Evaluate( );
     }

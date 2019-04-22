@@ -2,13 +2,13 @@
 
 namespace Final.Common
 {
-    public interface ISensorReading
+    public class SensorReading
     {
         float AngleRadians { get; }
 
         float Distance { get; }
 
-		String Jsonify()
+		string Jsonify()
 		{
 			return "{ \"AngleRadians\": \"" + self.AngleRadians() + "\", \"Distance\": \"" + self.Distance() + "\" }";
 			//return JsonObject.Parse(jsonstr);
