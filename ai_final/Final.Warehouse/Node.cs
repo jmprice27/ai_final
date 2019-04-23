@@ -35,5 +35,10 @@ namespace Final.Warehouse
         {
             return string.Format( "{0}:({1},{2})", this.Id, this.Position.X, this.Position.Y );
         }
+
+        public string Jsonify( )
+        {
+            return "{ \"Id\": \"" + this.Id + "\", \"X\": \"" + this.Position.X + "\", \"Y\": \"" this.Position.Y + "\"}";
+        }
     }
 }

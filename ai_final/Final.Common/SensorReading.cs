@@ -8,9 +8,9 @@ namespace Final.Common
 
         float Distance { get; }
 
-		string Jsonify()
+		public string Jsonify()
 		{
-			return "{ \"AngleRadians\": \"" + self.AngleRadians() + "\", \"Distance\": \"" + self.Distance() + "\" }";
+			return "{ \"AngleRadians\": \"" + self.AngleRadians + "\", \"Distance\": \"" + self.Distance + "\" }";
 			//return JsonObject.Parse(jsonstr);
 		}
 	}

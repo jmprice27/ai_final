@@ -9,9 +9,12 @@ namespace Final.Common
 
         IReadOnlyCollection<ISensorReading> SensorHits { get; }
 
-		JsonObject Jsonify()
+		public JsonObject Jsonify()
 		{
-			jsonstr = "{ \"Orientation\": \"" + this.Orientation() + "\", \"SensorHits\": " + this.SensorHits().Jsonify() + " }";
+			str_SensorHits = "[ ";
+			this.SensorHits.ToList().ForEach(i => str_SensorHits += i.Jsonify() + ", ");
+			str_SensorHits = "{} ]";
+			jsonstr = "{ \"Orientation\": \"" + this.Orientation + "\", \"SensorHits\": " + str_SensorHits + " }";
 			return JsonObject.Parse(jsonstr);
 		}
 	}
