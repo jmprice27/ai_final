@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
-using Final.Common;
-
-namespace Final.Warehouse
+﻿namespace Final.Warehouse
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Numerics;
+    using System.Runtime.Serialization;
+    using System.Threading.Tasks;
+
     [DataContract]
     public class Map
     {
@@ -38,28 +37,33 @@ namespace Final.Warehouse
             }
         }
 
+        public Map( string fileName )
+        {
+            throw new NotImplementedException( );
+        }
+
         [DataMember]
         public List<Node> Nodes { get; }
 
         [DataMember]
         public List<Segment> Segments { get; }
 
-        public Task<Node> GetNearestNode( Vector2 position )
+        public async Task<Node> GetNearestNode( Vector2 position )
         {
             throw new NotImplementedException( );
         }
 
-        public Task<Segment> GetSegment( IPosition position )
+        public async Task<Segment> GetSegment( Vector2 position )
         {
             throw new NotImplementedException( );
         }
 
-        public Task Open( string fileName )
+        public async Task Save( string fileName )
         {
             throw new NotImplementedException( );
         }
 
-        public Task Save( string fileName )
+        private async Task Open( string fileName )
         {
             throw new NotImplementedException( );
         }

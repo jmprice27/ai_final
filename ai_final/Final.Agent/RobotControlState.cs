@@ -6,7 +6,7 @@ using Final.Warehouse;
 
 namespace Final.Agent
 {
-    public interface IRobotControlState
+    public class RobotControlState
     {
         double DemandedThroughput { get; }
 
@@ -20,24 +20,27 @@ namespace Final.Agent
 
         Dictionary<Vector2, double> WorkerBeliefs { get; }
 
-        double Evaluate( );
+        double Evaluate( )
+        {
+            throw new NotImplementedException( );
+        }
 
 		public string Jsonify()
 		{
-			str_RobotDestinations = "[ ";
+			var str_RobotDestinations = "[ ";
 			this.RobotDestinations.ForEach(i => str_RobotDestinations += i.Jsonify() + ", ");
 			str_RobotDestinations += "{} ]";
-			str_RobotPositions = "[ ";
-			this.RobotPositions.ForEach(i => str_RobotPositions += "{ \"X\": \"" i.X + "\", \"Y\": \"" i.Y + "\"}, ");
+			var str_RobotPositions = "[ ";
+			this.RobotPositions.ForEach(i => str_RobotPositions += "{ \"X\": \"" + i.X + "\", \"Y\": \"" + i.Y + "\"}, ");
 			str_RobotPositions += "{} ]";
-			str_Sensors = "[ ";
+			var str_Sensors = "[ ";
 			this.Sensors.ForEach(i => str_Sensors += i.Jsonify() + ", ");
 			str_Sensors += "{} ]";
 			//str_WorkerBeliefs = "[ ";
 			//this.WorkerBeliefs.ForEach();
 			//str_WorkerBeliefs += "{} ]";
 			
-			jsonstr = "{ \"DemandedThroughput\": \"" + self.DemandedThroughput() + "\"," +
+			var jsonstr = "{ \"DemandedThroughput\": \"" + this.DemandedThroughput + "\"," +
 			"\"RobotDestinations\": " + str_RobotDestinations + ", " + 
 			"\"RobotPositions\": " + str_RobotPositions + ", " + 
 			"\"Sensors\": " + str_Sensors + ", " + 

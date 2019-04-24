@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
-using System.Runtime.Serialization;
-
-namespace Final.Warehouse
+﻿namespace Final.Warehouse
 {
+    using System.Collections.Generic;
+    using System.Numerics;
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class Node
     {
@@ -31,14 +31,14 @@ namespace Final.Warehouse
             return segment;
         }
 
-        public override string ToString( )
-        {
-            return string.Format( "{0}:({1},{2})", this.Id, this.Position.X, this.Position.Y );
-        }
-
         public string Jsonify( )
         {
             return "{ \"Id\": \"" + this.Id + "\", \"X\": \"" + this.Position.X + "\", \"Y\": \"" + this.Position.Y + "\"}";
+        }
+
+        public override string ToString( )
+        {
+            return string.Format( "{0}:({1},{2})", this.Id, this.Position.X, this.Position.Y );
         }
     }
 }
