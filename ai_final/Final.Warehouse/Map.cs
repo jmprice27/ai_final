@@ -58,6 +58,11 @@
             throw new NotImplementedException( );
         }
 
+        public async Task<Route> FindShortestRoute(Node start, Node end)
+        {
+            throw new NotImplementedException( );
+        }
+
         public async Task Save( string fileName )
         {
             throw new NotImplementedException( );
