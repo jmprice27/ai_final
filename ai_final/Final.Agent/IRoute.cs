@@ -5,12 +5,12 @@ namespace Final.Agent
 {
     internal interface IRoute
     {
-        IWaypoint End { get; }
+        Node End { get; }
 
-        IReadOnlyList<INode> NodeList { get; }
+        IReadOnlyList<Node> NodeList { get; }
 
-        IReadOnlyList<ISegment> SegmentList { get; }
+        IReadOnlyList<Segment> SegmentList { get; }
 
-        IWaypoint Start { get; }
+        Node Start { get; }
     }
 }

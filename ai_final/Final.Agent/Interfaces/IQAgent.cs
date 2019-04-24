@@ -18,7 +18,7 @@ namespace Final.Agent
 
         float Value { get; }
 
-        void Update( IRobotControlState state, IAgentAction action, IRobotControl nextState, float reward );
+        void Update( RobotControlState state, IAgentAction action, IRobotControl nextState, float reward );
 
         IAgentAction Policy { get; }
 

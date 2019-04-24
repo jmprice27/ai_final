@@ -22,7 +22,7 @@
         {
             var map = new Map( rows, columns, rowHeight, columnWidth );
 
-            map.Save( fileName );
+            await map.Save( fileName );
 
             var fileMap = new Map( fileName );
         }
