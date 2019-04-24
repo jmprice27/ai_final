@@ -5,11 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Loaded="WindowLoaded"
+        Title="Final Project" Loaded="WindowLoaded"
         WindowState="Maximized" WindowStyle="None">
     <Grid>
-        <Canvas Name="WarehouseCanvas">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
 
+        <Canvas Name="WarehouseCanvas" Grid.Row="0">
         </Canvas>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="OpenButton" Content="Open" Grid.Column="0"/>
+            <Button Name="SaveButton" Content="Save" Grid.Column="1"/>
+            <Button Name="StartButton" Content="Start" Grid.Column="2"/>
+            <Button Name="StopButton" Content="Start" Grid.Column="3"/>
+
+            <ToggleButton Name="ControlButton" Content="Take Control" Grid.Column="4"/>
+        </Grid>
     </Grid>
 </Window>
