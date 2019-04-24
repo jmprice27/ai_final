@@ -1,6 +1,4 @@
-﻿using System.Json;
-
-namespace Final.Common
+﻿namespace Final.Common
 {
     public class SensorReading
     {
@@ -10,8 +8,7 @@ namespace Final.Common
 
 		public string Jsonify()
 		{
-			return "{ \"AngleRadians\": \"" + self.AngleRadians + "\", \"Distance\": \"" + self.Distance + "\" }";
-			//return JsonObject.Parse(jsonstr);
+			return "{ \"AngleRadians\": \"" + this.AngleRadians + "\", \"Distance\": \"" + this.Distance + "\" }";
 		}
 	}
 }

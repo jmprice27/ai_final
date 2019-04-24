@@ -16,8 +16,8 @@ namespace Final.Warehouse
             this.Nodes = new List<Node>( );
             this.Segments = new List<Segment>( );
 
-            int nodeId = 0;
-            int segmentId = 0;
+            var nodeId = 0;
+            var segmentId = 0;
 
             var rowNodes = new List<Node>( );
 

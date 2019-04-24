@@ -38,7 +38,7 @@ namespace Final.Warehouse
 
         public string Jsonify( )
         {
-            return "{ \"Id\": \"" + this.Id + "\", \"X\": \"" + this.Position.X + "\", \"Y\": \"" this.Position.Y + "\"}";
+            return "{ \"Id\": \"" + this.Id + "\", \"X\": \"" + this.Position.X + "\", \"Y\": \"" + this.Position.Y + "\"}";
         }
     }
 }

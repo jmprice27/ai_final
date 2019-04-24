@@ -14,7 +14,7 @@ namespace UI
         public MainWindow( )
         {
             this.InitializeComponent( );
-            this.Warehouse = new MapVM( new Map( 100, 200 ) );
+            this.Warehouse = new MapVM( new Map( 10, 20 ) );
             this.DrawNodes( );
             this.DrawSegments( );
         }
