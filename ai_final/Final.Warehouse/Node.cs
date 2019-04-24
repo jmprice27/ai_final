@@ -7,10 +7,10 @@ namespace Final.Warehouse
     [DataContract]
     public class Node
     {
-        public Node( int id, int row, int column )
+        public Node( int id, float x, float y )
         {
             this.Id = id;
-            this.Position = new Vector2( row, column );
+            this.Position = new Vector2( x, y );
             this.Segments = new List<Segment>( );
         }
 

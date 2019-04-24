@@ -11,7 +11,7 @@ namespace Final.Warehouse
     [DataContract]
     public class Map
     {
-        public Map( int rows, int columns )
+        public Map( int rows, int columns, float rowHeight = 100, float columnWidth = 30 )
         {
             this.Nodes = new List<Node>( );
             this.Segments = new List<Segment>( );
@@ -25,7 +25,7 @@ namespace Final.Warehouse
             {
                 foreach( var column in Enumerable.Range( 0, columns ) )
                 {
-                    this.Nodes.Add( new Node( nodeId++, row, column ) );
+                    this.Nodes.Add( new Node( nodeId++, row * rowHeight, column * columnWidth ) );
                 }
 
                 if( row > 0 )
