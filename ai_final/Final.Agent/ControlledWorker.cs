@@ -2,10 +2,11 @@
 {
     using System.Numerics;
     using Final.Common;
+    using Final.Warehouse;
 
     public class ControlledWorker
     {
-        public ControlledWorker( Vector2 position, float speed = 1.0f)
+        public ControlledWorker( Vector2 position, float speed = 1.0f )
         {
             this.Position = position;
             this.Speed = speed;
@@ -15,31 +16,38 @@
 
         public float Speed { get; }
 
-        public Vector2 Move( Direction direction, int time = 1 )
+        public Vector2 Move( Direction direction, Map warehouse, int time = 1 )
         {
+            var possiblePosition = new Vector2( this.Position.X, this.Position.Y );
+
             switch( direction )
             {
                 case Direction.Unknown:
                     break;
 
                 case Direction.North:
-                    this.Position += new Vector2( 0, time * this.Speed );
+                    possiblePosition += new Vector2( 0, time * this.Speed );
                     break;
 
                 case Direction.South:
-                    this.Position -= new Vector2( 0, time * this.Speed );
+                    possiblePosition -= new Vector2( 0, time * this.Speed );
                     break;
 
                 case Direction.East:
-                    this.Position += new Vector2( time * this.Speed, 0 );
+                    possiblePosition += new Vector2( time * this.Speed, 0 );
                     break;
 
                 case Direction.West:
-                    this.Position -= new Vector2( time * this.Speed, 0 );
+                    possiblePosition -= new Vector2( time * this.Speed, 0 );
                     break;
 
                 case Direction.Stop:
                     break;
+            }
+
+            if( warehouse.IsLegalPosition( possiblePosition ) )
+            {
+                this.Position = possiblePosition;
             }
 
             return this.Position;

@@ -138,6 +138,22 @@
             return this.Segments.FirstOrDefault( s => s.ContainsPosition( position ) );
         }
 
+        public bool IsLegalPosition( Vector2 position )
+        {
+            bool legal = false;
+
+            try
+            {
+                legal = this.GetSegment( position ) != null;
+            }
+            catch
+            {
+                legal = false;
+            }
+
+            return legal;
+        }
+
         public void Save( string fileName )
         {
             // TODO: Needed?

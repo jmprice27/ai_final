@@ -21,7 +21,7 @@
         {
             this.InitializeComponent( );
 
-            this.Warehouse = new MapVM( new Map( 20, 33 ) );
+            this.Map = new MapVM( new Map( 20, 33 ) );
             this.Controlled = new ControlledWorkerVM( new ControlledWorker( new Vector2( 1000, 420 ) ) );
 
             this.DrawSegments( );
@@ -30,33 +30,41 @@
             this.DrawControlledWorker( );
         }
 
-        public MapVM Warehouse { get; set; }
-
         public ControlledWorkerVM Controlled { get; set; }
+
+        public MapVM Map { get; set; }
 
         private void ControlButton_Checked( object sender, RoutedEventArgs e )
         {
             var isChecked = ( sender as ToggleButton ).IsChecked;
 
-            this.Warehouse.IsManuallyControlled = isChecked ?? false;
+            this.Map.IsManuallyControlled = isChecked ?? false;
+        }
+
+        private void DrawControlledWorker( )
+        {
+            Canvas.SetLeft( this.Controlled.Shape, this.Controlled.Position.X );
+            Canvas.SetTop( this.Controlled.Shape, this.Controlled.Position.Y );
+
+            this.WarehouseCanvas.Children.Add( this.Controlled.Shape );
         }
 
         private void DrawNodes( )
         {
-            this.Warehouse.Nodes.ForEach( node =>
+            this.Map.Nodes.ForEach( node =>
             {
                 Shape shape = new Ellipse( )
                 {
-                    Height = this.Warehouse.NodeRadius,
-                    Width = this.Warehouse.NodeRadius,
+                    Height = this.Map.NodeRadius,
+                    Width = this.Map.NodeRadius,
                     Tag = node,
                     Fill = Brushes.Blue,
                     Opacity = 0.5,
-                    ToolTip = new ToolTip( ) { Content = string.Format( "Node {0}", node.ToString() ) }
+                    ToolTip = new ToolTip( ) { Content = string.Format( "Node {0}", node.ToString( ) ) }
                 };
 
-                Canvas.SetLeft( shape, node.Position.X - this.Warehouse.NodeRadius / 2 );
-                Canvas.SetTop( shape, node.Position.Y - this.Warehouse.NodeRadius / 2 );
+                Canvas.SetLeft( shape, node.Position.X - this.Map.NodeRadius / 2 );
+                Canvas.SetTop( shape, node.Position.Y - this.Map.NodeRadius / 2 );
 
                 this.WarehouseCanvas.Children.Add( shape );
             } );
@@ -64,14 +72,14 @@
 
         private void DrawSegments( )
         {
-            this.Warehouse.Segments.ForEach( segment =>
+            this.Map.Segments.ForEach( segment =>
             {
                 Polyline line = new Polyline( )
                 {
                     ToolTip = new ToolTip( ) { Content = string.Format( "Segment {0}", segment.Id ) },
                     Stroke = Brushes.Gray,
                     Opacity = 0.5,
-                    StrokeThickness = this.Warehouse.AisleWidth
+                    StrokeThickness = this.Map.AisleWidth
                 };
 
                 var position = segment.Ends.Item1.Position;
@@ -83,34 +91,26 @@
             } );
         }
 
-        private void DrawControlledWorker()
-        {
-            Canvas.SetLeft( this.Controlled.Shape, this.Controlled.Position.X );
-            Canvas.SetTop( this.Controlled.Shape, this.Controlled.Position.Y );
-
-            this.WarehouseCanvas.Children.Add( this.Controlled.Shape );
-        }
-
         private void OnKeybaordInput( object sender, KeyEventArgs e )
         {
-            if( this.Warehouse.IsManuallyControlled )
+            if( this.Map.IsManuallyControlled )
             {
                 switch( e.Key )
                 {
                     case Key.Left:
-                        this.Controlled.MoveWorker( Direction.West );
+                        this.Controlled.MoveWorker( Direction.West, this.Map.Map );
                         break;
 
                     case Key.Up:
-                        this.Controlled.MoveWorker( Direction.North );
+                        this.Controlled.MoveWorker( Direction.South, this.Map.Map );
                         break;
 
                     case Key.Right:
-                        this.Controlled.MoveWorker( Direction.East );
+                        this.Controlled.MoveWorker( Direction.East, this.Map.Map );
                         break;
 
                     case Key.Down:
-                        this.Controlled.MoveWorker( Direction.South );
+                        this.Controlled.MoveWorker( Direction.North, this.Map.Map );
                         break;
                 }
             }
@@ -118,12 +118,12 @@
 
         private void OpenButton_Click( object sender, RoutedEventArgs e )
         {
-            this.Warehouse.Map = new Map( "" );
+            this.Map.Map = new Map( "" );
         }
 
         private void SaveButton_Click( object sender, RoutedEventArgs e )
         {
-            this.Warehouse.Map.Save( "" );
+            this.Map.Map.Save( "" );
         }
 
         private void StartButton_Click( object sender, RoutedEventArgs e )

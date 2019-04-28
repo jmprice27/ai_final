@@ -1,16 +1,16 @@
 ﻿namespace UI
 {
-    using System.Media;
     using System.Numerics;
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Shapes;
     using Final.Agent;
     using Final.Common;
+    using Final.Warehouse;
 
     public class ControlledWorkerVM
     {
-        ControlledWorker model;
+        private readonly ControlledWorker model;
 
         public ControlledWorkerVM( ControlledWorker worker )
         {
@@ -29,11 +29,7 @@
             };
         }
 
-        public int Radius { get; }
-
         public Brush Color { get; }
-
-        public Shape Shape { get; }
 
         public Vector2 Position
         {
@@ -43,12 +39,16 @@
             }
         }
 
-        public void MoveWorker(Direction direction)
-        {
-            this.model.Move( direction );
+        public int Radius { get; }
 
-            Canvas.SetLeft( this.Shape, this.Position.X);
-            Canvas.SetTop( this.Shape, this.Position.Y);
+        public Shape Shape { get; }
+
+        public void MoveWorker( Direction direction, Map warehouse )
+        {
+            this.model.Move( direction, warehouse );
+
+            Canvas.SetLeft( this.Shape, this.Position.X );
+            Canvas.SetTop( this.Shape, this.Position.Y );
         }
     }
 }
