@@ -1,10 +1,9 @@
-﻿using System;
-using System.Numerics;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
-
-namespace Final.Warehouse
+﻿namespace Final.Warehouse
 {
+    using System;
+    using System.Numerics;
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class Segment
     {
@@ -28,10 +27,12 @@ namespace Final.Warehouse
             }
         }
 
-        public Task<bool> ContainsPosition( Vector2 position )
+        public bool ContainsPosition( Vector2 position )
         {
-            // TODO: calculate intercept
-            throw new NotImplementedException( );
+            var pointA = this.Ends.Item1.Position;
+            var pointB = this.Ends.Item2.Position;
+
+            return Math.Abs( Vector2.Distance( pointA, position ) + Vector2.Distance( pointB, position ) - this.Length ) < float.Epsilon;
         }
 
         public override string ToString( )

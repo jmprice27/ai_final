@@ -21,11 +21,14 @@
 
             var segment = new Segment( id, node1, node2 );
 
-            Assert.IsTrue( await segment.ContainsPosition( node1.Position ) );
-            Assert.IsTrue( await segment.ContainsPosition( node2.Position ) );
+            Assert.IsTrue( segment.ContainsPosition( node1.Position ) );
+            Assert.IsTrue( segment.ContainsPosition( node2.Position ) );
 
-            Assert.IsFalse( await segment.ContainsPosition( new Vector2( 5.0f, 5.0f ) ) );
-            Assert.IsTrue( await segment.ContainsPosition( new Vector2( 15.0f, 15.0f ) ) );
+            Assert.IsFalse( segment.ContainsPosition( new Vector2( 17.0f, 12.0f ) ) );
+            Assert.IsFalse( segment.ContainsPosition( new Vector2( 5.0f, 5.0f ) ) );
+            Assert.IsFalse( segment.ContainsPosition( new Vector2( 25.0f, 25.0f ) ) );
+
+            Assert.IsTrue( segment.ContainsPosition( new Vector2( 15.0f, 15.0f ) ) );
         }
 
         [TestMethod]

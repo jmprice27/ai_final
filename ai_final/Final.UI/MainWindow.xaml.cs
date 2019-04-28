@@ -14,9 +14,11 @@ namespace UI
         public MainWindow( )
         {
             this.InitializeComponent( );
-            this.Warehouse = new MapVM( new Map( 10, 20 ) );
-            this.DrawNodes( );
+            this.Warehouse = new MapVM( new Map( 20, 33 ) );
+
             this.DrawSegments( );
+
+            //this.DrawNodes( );
         }
 
         private MapVM Warehouse { get; }
@@ -46,7 +48,8 @@ namespace UI
                 Polyline line = new Polyline( )
                 {
                     ToolTip = new ToolTip( ) { Content = string.Format( "Segment {0}", segment.Id ) },
-                    Stroke = Brushes.Black,
+                    Stroke = Brushes.Gray,
+                    Opacity = 0.5,
                     StrokeThickness = this.Warehouse.AisleWidth
                 };
 

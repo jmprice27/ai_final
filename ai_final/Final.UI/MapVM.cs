@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Final.Warehouse;
 
 namespace UI
 {
-    class MapVM
+    internal class MapVM
     {
-        public MapVM(Map map)
+        public MapVM( Map map )
         {
             this.Map = map;
-            this.AisleWidth = 0.2;
-            this.NodeRadius = 0.05;
+            this.AisleWidth = 10;
+            this.NodeRadius = 12;
         }
 
-        public Map Map { get; }
-
         public double AisleWidth { get; }
+
+        public Map Map { get; }
 
         public double NodeRadius { get; }
 
