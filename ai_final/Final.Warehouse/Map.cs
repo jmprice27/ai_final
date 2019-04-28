@@ -69,6 +69,7 @@
 
         public Map( string fileName )
         {
+            // TODO: Needed?
             throw new NotImplementedException( );
         }
 
@@ -125,18 +126,20 @@
             return shortestSegment.Ends.Item1 == node ? shortestSegment.Ends.Item2 : shortestSegment.Ends.Item1;
         }
 
-        public async Task<Segment> GetSegment( Vector2 position )
+        public Segment GetSegment( Vector2 position )
         {
             return this.Segments.FirstOrDefault( s => s.ContainsPosition( position ) );
         }
 
-        public async Task Save( string fileName )
+        public void Save( string fileName )
         {
+            // TODO: Needed?
             throw new NotImplementedException( );
         }
 
-        private async Task Open( string fileName )
+        private void Open( string fileName )
         {
+            // TODO: Needed?
             throw new NotImplementedException( );
         }
     }

@@ -1,11 +1,14 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using Final.Warehouse;
-
-namespace UI
+﻿namespace UI
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
+    using Final.Warehouse;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -14,14 +17,14 @@ namespace UI
         public MainWindow( )
         {
             this.InitializeComponent( );
+
             this.Warehouse = new MapVM( new Map( 20, 33 ) );
 
             this.DrawSegments( );
-
-            //this.DrawNodes( );
+            this.DrawNodes( );
         }
 
-        private MapVM Warehouse { get; }
+        public MapVM Warehouse { get; set; }
 
         private void DrawNodes( )
         {
@@ -36,6 +39,9 @@ namespace UI
                     Opacity = 0.5,
                     ToolTip = new ToolTip( ) { Content = string.Format( "Node {0}", node.Id ) }
                 };
+
+                Canvas.SetLeft( shape, node.Position.X - this.Warehouse.NodeRadius/2 );
+                Canvas.SetTop( shape, node.Position.Y - this.Warehouse.NodeRadius/2 );
 
                 this.WarehouseCanvas.Children.Add( shape );
             } );
@@ -64,6 +70,51 @@ namespace UI
 
         private void WindowLoaded( object sender, RoutedEventArgs e )
         {
+            this.KeyDown += new System.Windows.Input.KeyEventHandler( this.OnKeybaordInput );
+        }
+
+        private void OnKeybaordInput( object sender, KeyEventArgs e )
+        {
+            if( this.Warehouse.IsManuallyControlled )
+            {
+                switch( e.Key )
+                {
+                    case Key.Left:
+                        break;
+                    case Key.Up:
+                        break;
+                    case Key.Right:
+                        break;
+                    case Key.Down:
+                        break;
+                }
+            }
+        }
+        private void ControlButton_Checked( object sender, RoutedEventArgs e )
+        {
+            var isChecked = ( sender as ToggleButton ).IsChecked;
+
+            this.Warehouse.IsManuallyControlled = isChecked ?? false;
+        }
+
+        private void OpenButton_Click( object sender, RoutedEventArgs e )
+        {
+            this.Warehouse.Map = new Map( "" );
+        }
+
+        private void SaveButton_Click( object sender, RoutedEventArgs e )
+        {
+            this.Warehouse.Map.Save( "" );
+        }
+
+        private void StartButton_Click( object sender, RoutedEventArgs e )
+        {
+            throw new NotImplementedException( );
+        }
+
+        private void StopButton_Click( object sender, RoutedEventArgs e )
+        {
+            throw new NotImplementedException( );
         }
     }
 }

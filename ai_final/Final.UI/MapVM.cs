@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
-using Final.Warehouse;
-
-namespace UI
+﻿namespace UI
 {
-    internal class MapVM
+    using System.Collections.Generic;
+    using Final.Warehouse;
+
+    public class MapVM
     {
+        public MapVM()
+        {
+
+        }
+
         public MapVM( Map map )
         {
             this.Map = map;
@@ -12,9 +17,11 @@ namespace UI
             this.NodeRadius = 12;
         }
 
+        public bool IsManuallyControlled { get; set; }
+
         public double AisleWidth { get; }
 
-        public Map Map { get; }
+        public Map Map { get; set; }
 
         public double NodeRadius { get; }
 

@@ -1,6 +1,5 @@
 ﻿namespace Final.Warehouse
 {
-    using System;
     using System.Collections.Generic;
 
     public class Route
@@ -11,28 +10,37 @@
             this.SegmentList = segmentList;
         }
 
-        private float Cost
+        public float Cost
         {
             get
             {
-                throw new NotImplementedException( );
+                // TODO: Needed?
+
+                var x = 1;
+                return this.Length * x;
             }
         }
 
-        private Node End { get => this.NodeList[ this.NodeList.Count - 1 ]; }
+        public Node End { get => this.NodeList[ this.NodeList.Count - 1 ]; }
 
-        private float Length
+        public float Length
         {
             get
             {
-                throw new NotImplementedException( );
+                var sum = 0.0f;
+                foreach( var segment in this.SegmentList )
+                {
+                    sum += segment.Length;
+                }
+
+                return sum;
             }
         }
 
-        private List<Node> NodeList { get; }
+        public List<Node> NodeList { get; }
 
-        private List<Segment> SegmentList { get; }
+        public List<Segment> SegmentList { get; }
 
-        private Node Start { get => this.NodeList[ 0 ]; }
+        public Node Start { get => this.NodeList[ 0 ]; }
     }
 }

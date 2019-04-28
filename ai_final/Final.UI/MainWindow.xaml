@@ -25,12 +25,12 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Name="OpenButton" Content="Open" Grid.Column="0"/>
-            <Button Name="SaveButton" Content="Save" Grid.Column="1"/>
-            <Button Name="StartButton" Content="Start" Grid.Column="2"/>
-            <Button Name="StopButton" Content="Start" Grid.Column="3"/>
+            <Button Name="OpenButton" Content="Open" Grid.Column="0" Click="OpenButton_Click"/>
+            <Button Name="SaveButton" Content="Save" Grid.Column="1" Click="SaveButton_Click"/>
+            <Button Name="StartButton" Content="Start" Grid.Column="2" Click="StartButton_Click"/>
+            <Button Name="StopButton" Content="Start" Grid.Column="3" Click="StopButton_Click"/>
 
-            <ToggleButton Name="ControlButton" Content="Take Control" Grid.Column="4"/>
+            <ToggleButton Name="ControlButton" Content="Take Control" Grid.Column="4" Checked="ControlButton_Checked" Unchecked="ControlButton_Checked"/>
         </Grid>
     </Grid>
 </Window>

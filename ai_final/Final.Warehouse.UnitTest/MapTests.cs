@@ -46,11 +46,11 @@
         {
             var map = new Map( rows, columns, rowHeight, columnWidth );
 
-            Assert.IsNotNull( await map.GetSegment( new Vector2( rowHeight, columnWidth ) ) );
-            Assert.IsNotNull( await map.GetSegment( new Vector2( rowHeight + 5, columnWidth ) ) );
-            Assert.IsNotNull( await map.GetSegment( new Vector2( rowHeight, columnWidth + 5 ) ) );
+            Assert.IsNotNull( map.GetSegment( new Vector2( rowHeight, columnWidth ) ) );
+            Assert.IsNotNull( map.GetSegment( new Vector2( rowHeight + 5, columnWidth ) ) );
+            Assert.IsNotNull( map.GetSegment( new Vector2( rowHeight, columnWidth + 5 ) ) );
 
-            Assert.IsNull( await map.GetSegment( new Vector2( -5, -5 ) ) );
+            Assert.IsNull( map.GetSegment( new Vector2( -5, -5 ) ) );
         }
 
         [TestMethod]
