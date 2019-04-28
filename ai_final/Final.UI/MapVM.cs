@@ -5,9 +5,8 @@
 
     public class MapVM
     {
-        public MapVM()
+        public MapVM( )
         {
-
         }
 
         public MapVM( Map map )
@@ -17,9 +16,9 @@
             this.NodeRadius = 12;
         }
 
-        public bool IsManuallyControlled { get; set; }
-
         public double AisleWidth { get; }
+
+        public bool IsManuallyControlled { get; set; }
 
         public Map Map { get; set; }
 

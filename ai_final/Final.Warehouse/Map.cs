@@ -33,7 +33,7 @@
                 Node lastNode = null;
                 foreach( var column in Enumerable.Range( 0, columns ) )
                 {
-                    var newNode = new Node( nodeId++, row * this.RowHeight, column * this.ColumnWidth);
+                    var newNode = new Node( nodeId++, row * this.RowHeight, column * this.ColumnWidth );
 
                     if( lastNode != null )
                     {
@@ -76,15 +76,15 @@
             throw new NotImplementedException( );
         }
 
+        public float ColumnWidth { get; }
+
         [DataMember]
         public List<Node> Nodes { get; }
 
-        [DataMember]
-        public List<Segment> Segments { get; }
-
         public float RowHeight { get; }
 
-        public float ColumnWidth { get; }
+        [DataMember]
+        public List<Segment> Segments { get; }
 
         public async Task<Route> FindShortestRoute( Node start, Node end )
         {

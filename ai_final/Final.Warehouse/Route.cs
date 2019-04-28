@@ -48,22 +48,22 @@
         public Node Start { get => this.NodeList[ 0 ]; }
 
         // Throws exception if node not connected
-        private void CheckConnected(Node node, int index)
+        private void CheckConnected( Node node, int index )
         {
             var segment = node.Segments.FirstOrDefault( s => s.Ends.Item1 == this.NodeList[ index + 1 ] || s.Ends.Item2 == this.NodeList[ index + 1 ] );
 
-            if (segment == null || segment != this.SegmentList[index])
+            if( segment == null || segment != this.SegmentList[ index ] )
             {
                 throw new ArgumentException( );
             }
 
             var nextNode = segment.Ends.Item1 == node ? segment.Ends.Item2 : segment.Ends.Item1;
 
-            if (nextNode == null)
+            if( nextNode == null )
             {
                 throw new ArgumentException( );
             }
-            else if (nextNode != this.End)
+            else if( nextNode != this.End )
             {
                 this.CheckConnected( nextNode, ++index );
             }

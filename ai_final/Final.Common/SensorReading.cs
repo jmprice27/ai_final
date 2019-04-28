@@ -2,13 +2,13 @@
 {
     public class SensorReading
     {
-        float AngleRadians { get; }
+        public float AngleRadians { get; }
 
-        float Distance { get; }
+        public float Distance { get; }
 
-		public string Jsonify()
-		{
-			return "{ \"AngleRadians\": \"" + this.AngleRadians + "\", \"Distance\": \"" + this.Distance + "\" }";
-		}
-	}
+        public string Jsonify( )
+        {
+            return "{ \"AngleRadians\": \"" + this.AngleRadians + "\", \"Distance\": \"" + this.Distance + "\" }";
+        }
+    }
 }

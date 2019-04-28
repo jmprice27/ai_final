@@ -26,6 +26,13 @@
 
         public MapVM Warehouse { get; set; }
 
+        private void ControlButton_Checked( object sender, RoutedEventArgs e )
+        {
+            var isChecked = ( sender as ToggleButton ).IsChecked;
+
+            this.Warehouse.IsManuallyControlled = isChecked ?? false;
+        }
+
         private void DrawNodes( )
         {
             this.Warehouse.Nodes.ForEach( node =>
@@ -40,8 +47,8 @@
                     ToolTip = new ToolTip( ) { Content = string.Format( "Node {0}", node.Id ) }
                 };
 
-                Canvas.SetLeft( shape, node.Position.X - this.Warehouse.NodeRadius/2 );
-                Canvas.SetTop( shape, node.Position.Y - this.Warehouse.NodeRadius/2 );
+                Canvas.SetLeft( shape, node.Position.X - this.Warehouse.NodeRadius / 2 );
+                Canvas.SetTop( shape, node.Position.Y - this.Warehouse.NodeRadius / 2 );
 
                 this.WarehouseCanvas.Children.Add( shape );
             } );
@@ -68,11 +75,6 @@
             } );
         }
 
-        private void WindowLoaded( object sender, RoutedEventArgs e )
-        {
-            this.KeyDown += new System.Windows.Input.KeyEventHandler( this.OnKeybaordInput );
-        }
-
         private void OnKeybaordInput( object sender, KeyEventArgs e )
         {
             if( this.Warehouse.IsManuallyControlled )
@@ -81,20 +83,17 @@
                 {
                     case Key.Left:
                         break;
+
                     case Key.Up:
                         break;
+
                     case Key.Right:
                         break;
+
                     case Key.Down:
                         break;
                 }
             }
-        }
-        private void ControlButton_Checked( object sender, RoutedEventArgs e )
-        {
-            var isChecked = ( sender as ToggleButton ).IsChecked;
-
-            this.Warehouse.IsManuallyControlled = isChecked ?? false;
         }
 
         private void OpenButton_Click( object sender, RoutedEventArgs e )
@@ -115,6 +114,11 @@
         private void StopButton_Click( object sender, RoutedEventArgs e )
         {
             throw new NotImplementedException( );
+        }
+
+        private void WindowLoaded( object sender, RoutedEventArgs e )
+        {
+            this.KeyDown += new System.Windows.Input.KeyEventHandler( this.OnKeybaordInput );
         }
     }
 }
