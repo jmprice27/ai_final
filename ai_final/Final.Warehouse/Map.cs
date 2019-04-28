@@ -17,6 +17,9 @@
 
         public Map( int rows, int columns, float rowHeight = 100, float columnWidth = 30 )
         {
+            this.RowHeight = rowHeight;
+            this.ColumnWidth = columnWidth;
+
             this.Nodes = new List<Node>( );
             this.Segments = new List<Segment>( );
 
@@ -30,7 +33,7 @@
                 Node lastNode = null;
                 foreach( var column in Enumerable.Range( 0, columns ) )
                 {
-                    var newNode = new Node( nodeId++, row * rowHeight, column * columnWidth );
+                    var newNode = new Node( nodeId++, row * this.RowHeight, column * this.ColumnWidth);
 
                     if( lastNode != null )
                     {
@@ -78,6 +81,10 @@
 
         [DataMember]
         public List<Segment> Segments { get; }
+
+        public float RowHeight { get; }
+
+        public float ColumnWidth { get; }
 
         public async Task<Route> FindShortestRoute( Node start, Node end )
         {
