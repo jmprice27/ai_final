@@ -1,12 +1,15 @@
 ﻿namespace UI
 {
     using System;
+    using System.Numerics;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Shapes;
+    using Final.Agent;
+    using Final.Common;
     using Final.Warehouse;
 
     /// <summary>
@@ -19,12 +22,17 @@
             this.InitializeComponent( );
 
             this.Warehouse = new MapVM( new Map( 20, 33 ) );
+            this.Controlled = new ControlledWorkerVM( new ControlledWorker( new Vector2( 1000, 420 ) ) );
 
             this.DrawSegments( );
             this.DrawNodes( );
+
+            this.DrawControlledWorker( );
         }
 
         public MapVM Warehouse { get; set; }
+
+        public ControlledWorkerVM Controlled { get; set; }
 
         private void ControlButton_Checked( object sender, RoutedEventArgs e )
         {
@@ -44,7 +52,7 @@
                     Tag = node,
                     Fill = Brushes.Blue,
                     Opacity = 0.5,
-                    ToolTip = new ToolTip( ) { Content = string.Format( "Node {0}", node.Id ) }
+                    ToolTip = new ToolTip( ) { Content = string.Format( "Node {0}", node.ToString() ) }
                 };
 
                 Canvas.SetLeft( shape, node.Position.X - this.Warehouse.NodeRadius / 2 );
@@ -75,6 +83,14 @@
             } );
         }
 
+        private void DrawControlledWorker()
+        {
+            Canvas.SetLeft( this.Controlled.Shape, this.Controlled.Position.X );
+            Canvas.SetTop( this.Controlled.Shape, this.Controlled.Position.Y );
+
+            this.WarehouseCanvas.Children.Add( this.Controlled.Shape );
+        }
+
         private void OnKeybaordInput( object sender, KeyEventArgs e )
         {
             if( this.Warehouse.IsManuallyControlled )
@@ -82,15 +98,19 @@
                 switch( e.Key )
                 {
                     case Key.Left:
+                        this.Controlled.MoveWorker( Direction.West );
                         break;
 
                     case Key.Up:
+                        this.Controlled.MoveWorker( Direction.North );
                         break;
 
                     case Key.Right:
+                        this.Controlled.MoveWorker( Direction.East );
                         break;
 
                     case Key.Down:
+                        this.Controlled.MoveWorker( Direction.South );
                         break;
                 }
             }

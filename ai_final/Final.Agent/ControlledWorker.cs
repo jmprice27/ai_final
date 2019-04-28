@@ -5,8 +5,9 @@
 
     public class ControlledWorker
     {
-        public ControlledWorker( float speed = 1.0f )
+        public ControlledWorker( Vector2 position, float speed = 1.0f)
         {
+            this.Position = position;
             this.Speed = speed;
         }
 
@@ -14,7 +15,7 @@
 
         public float Speed { get; }
 
-        public Vector2 Move( Direction direction, int time )
+        public Vector2 Move( Direction direction, int time = 1 )
         {
             switch( direction )
             {
