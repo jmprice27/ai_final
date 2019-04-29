@@ -14,8 +14,12 @@
                 current_node = came_from[current_node];
                 nodeList.push(current_node);
 
-                // Node.getSegment is my stand-in for how to get the segment between two nodes
-                segmentList.push(prev_node.getSegment(current_node));
+                // this loop finds the segment between two nodes
+                // may be useful as a function of Node?
+                foreach (var seg in prev_node.Segments) {
+                    if (seg.Ends[0] == current_node || seg.Ends[1] == current_node)
+                        segmentList.push(seg);
+                }
             }
             return Route(nodeList, segmentList);
         }
