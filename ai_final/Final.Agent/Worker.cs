@@ -3,27 +3,26 @@
     using System;
     using System.Collections.Generic;
     using System.Numerics;
-    using Final.Common;
     using Final.Warehouse;
 
     public class Worker
     {
-        public Route BuildRoute(Dictionary<Node, Node> cameFrom, Node start, Node currentNode)
+        public Route BuildRoute( Dictionary<Node, Node> cameFrom, Node start, Node currentNode )
         {
-            var nodeList = new List<Node>();
-            var segmentList = new List<Segment>();
+            var nodeList = new List<Node>( );
+            var segmentList = new List<Segment>( );
 
-            nodeList.Add(currentNode);
+            nodeList.Add( currentNode );
 
-            while (currentNode != start)
+            while( currentNode != start )
             {
                 var prevNode = currentNode;
-                currentNode = cameFrom[currentNode];
-                nodeList.Add(currentNode);
+                currentNode = cameFrom[ currentNode ];
+                nodeList.Add( currentNode );
 
                 // this loop finds the segment between two nodes
                 // may be useful as a function of Node?
-                foreach (var seg in prevNode.Segments)
+                foreach( var seg in prevNode.Segments )
                 {
                     if( seg.Ends.Item1 == currentNode || seg.Ends.Item2 == currentNode )
                     {
@@ -31,27 +30,27 @@
                     }
                 }
             }
-            return new Route(nodeList, segmentList);
+            return new Route( nodeList, segmentList );
         }
 
-        public Route FindRoute(Map map, Node start, Node goal)
+        public Route FindRoute( Map map, Node start, Node goal )
         {
-            var explored = new List<Node>();
+            var explored = new List<Node>( );
             var frontier = new List<Node> { start };
 
-            var cameFrom = new Dictionary<Node, Node>();
+            var cameFrom = new Dictionary<Node, Node>( );
 
-            var score = new Dictionary<Node, float>();
-            score[start] = 0;
+            var score = new Dictionary<Node, float>( );
+            score[ start ] = 0;
 
-            var priority = new Dictionary<Node, float>();
-            
-            priority[start] = Vector2.Distance(start.Position, goal.Position);
+            var priority = new Dictionary<Node, float>( );
 
-            while(frontier.Count > 0)
+            priority[ start ] = Vector2.Distance( start.Position, goal.Position );
+
+            while( frontier.Count > 0 )
             {
-                var currentNode = frontier[0];
-                foreach (var n in frontier)
+                var currentNode = frontier[ 0 ];
+                foreach( var n in frontier )
                 {
                     if( priority[ n ] < priority[ currentNode ] )
                     {
@@ -64,8 +63,8 @@
                     return this.BuildRoute( cameFrom, start, currentNode );
                 }
 
-                frontier.Remove(currentNode);
-                explored.Add(currentNode);
+                frontier.Remove( currentNode );
+                explored.Add( currentNode );
 
                 foreach( var s in currentNode.Segments )
                 {
