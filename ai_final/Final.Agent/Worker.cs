@@ -1,30 +1,31 @@
 ﻿namespace Final.Agent
 {
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using Final.Common;
     using Final.Warehouse;
 
-    internal class Worker
+    public class Worker
     {
-        public Route build_path(Dictionary<Node, Node> came_from, Node start, Node current_node)
+        public Route BuildRoute(Dictionary<Node, Node> cameFrom, Node start, Node currentNode)
         {
             var nodeList = new List<Node>();
             var segmentList = new List<Segment>();
 
-            nodeList.Add(current_node);
+            nodeList.Add(currentNode);
 
-            while (current_node != start)
+            while (currentNode != start)
             {
-                var prev_node = current_node;
-                current_node = came_from[current_node];
-                nodeList.Add(current_node);
+                var prevNode = currentNode;
+                currentNode = cameFrom[currentNode];
+                nodeList.Add(currentNode);
 
                 // this loop finds the segment between two nodes
                 // may be useful as a function of Node?
-                foreach (var seg in prev_node.Segments)
+                foreach (var seg in prevNode.Segments)
                 {
-                    if( seg.Ends.Item1 == current_node || seg.Ends.Item2 == current_node )
+                    if( seg.Ends.Item1 == currentNode || seg.Ends.Item2 == currentNode )
                     {
                         segmentList.Add( seg );
                     }
@@ -33,13 +34,12 @@
             return new Route(nodeList, segmentList);
         }
 
-        public Route find_path(Map m, Node start, Node goal)
+        public Route FindRoute(Map map, Node start, Node goal)
         {
             var explored = new List<Node>();
-            var frontier = new List<Node>();
-            frontier.Add(start);
+            var frontier = new List<Node> { start };
 
-            var came_from = new Dictionary<Node, Node>();
+            var cameFrom = new Dictionary<Node, Node>();
 
             var score = new Dictionary<Node, float>();
             score[start] = 0;
@@ -50,48 +50,51 @@
 
             while(frontier.Count > 0)
             {
-                var current_node = frontier[0];
+                var currentNode = frontier[0];
                 foreach (var n in frontier)
                 {
-                    if( priority[ n ] < priority[ current_node ] )
+                    if( priority[ n ] < priority[ currentNode ] )
                     {
-                        current_node = n;
+                        currentNode = n;
                     }
                 }
 
-                if( current_node == goal )
+                if( currentNode == goal )
                 {
-                    return this.build_path( came_from, start, current_node );
+                    return this.BuildRoute( cameFrom, start, currentNode );
                 }
 
-                frontier.Remove(current_node);
-                explored.Add(current_node);
-                
-                foreach(var s in current_node.Segments)
-                {
-                    var next_node = s.Ends.Item1;
-                    if( next_node == current_node )
-                    {
-                        next_node = s.Ends.Item2;
-                    }
-                    if (!explored.Contains(next_node))
-                    {
-                        var nextscore = score[current_node] + s.Length;
+                frontier.Remove(currentNode);
+                explored.Add(currentNode);
 
-                        if (!frontier.Contains(next_node))
+                foreach( var s in currentNode.Segments )
+                {
+                    var nextNode = s.Ends.Item1;
+                    if( nextNode == currentNode )
+                    {
+                        nextNode = s.Ends.Item2;
+                    }
+                    if( !explored.Contains( nextNode ) )
+                    {
+                        var nextScore = score[ currentNode ] + s.Length;
+
+                        if( !frontier.Contains( nextNode ) )
                         {
-                            frontier.Add(next_node);
+                            frontier.Add( nextNode );
                         }
-                        else if (nextscore < score[next_node])
+                        else if( nextScore < score[ nextNode ] )
                         {
-                            came_from[next_node] = current_node;
-                            score[next_node] = nextscore;
-                            
-                            priority[next_node] = score[ next_node ] + Vector2.Distance(next_node.Position, goal.Position);
+                            cameFrom[ nextNode ] = currentNode;
+                            score[ nextNode ] = nextScore;
+
+                            priority[ nextNode ] = score[ nextNode ] + Vector2.Distance( nextNode.Position, goal.Position );
                         }
                     }
                 }
             }
+
+            // TODO: Remove- Added to get building ( not all code paths return a value)
+            throw new NotImplementedException( );
         }
     }
 }
