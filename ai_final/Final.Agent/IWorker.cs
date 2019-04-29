@@ -36,9 +36,8 @@
             score[start] = 0;
 
             var priority = new Dictionary<Node, int>();
-
-            // Map.getDistance is my stand-in for how to determine score; may be unneeded
-            priority[start] = m.getDistance(start, goal);
+            
+            priority[start] = Vector2.Distance(start.Position, goal.Position);
 
             while(frontier.Count > 0) {
                 var current_node = frontier[0];
@@ -66,8 +65,7 @@
                             came_from[next_node] = current_node;
                             score[next_node] = nextscore;
                             
-                            // Map.getDistance gets used again here
-                            priority[next_node] = score[next_score] + m.getDistance(next_node, goal);
+                            priority[next_node] = score[next_score] + Vector2.Distance(next_node.Position, goal.Position);
                         }
                     }
                 }
