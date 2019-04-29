@@ -1,9 +1,9 @@
 ﻿namespace Final.Agent
 {
+    using System.Numerics;
     using Final.Agent.Interfaces;
     using Final.Common;
     using Final.Warehouse;
-    using System.Numerics;
 
     public class ControlledWorker : IMoving
     {
@@ -13,11 +13,13 @@
             this.Speed = speed;
         }
 
+        public Segment CurrentSegment { get => throw new System.NotImplementedException( ); }
+
+        public Node LastNode { get => throw new System.NotImplementedException( ); }
+
         public Vector2 Position { get; private set; }
 
         public float Speed { get; }
-        public Segment CurrentSegment { get => throw new System.NotImplementedException( ); }
-        public Node LastNode { get => throw new System.NotImplementedException( ); }
 
         public Vector2 Move( Direction direction, Map warehouse, int timeStep = 1 )
         {
@@ -55,6 +57,5 @@
 
             return this.Position;
         }
-
     }
 }

@@ -27,17 +27,17 @@
             }
         }
 
-        public Node FindNearestNode(Vector2 position)
-        {
-            return Vector2.Distance( this.Ends.Item1.Position, position ) < Vector2.Distance( this.Ends.Item2.Position, position ) ? this.Ends.Item1 : this.Ends.Item2;
-        }
-
         public bool ContainsPosition( Vector2 position )
         {
             var pointA = this.Ends.Item1.Position;
             var pointB = this.Ends.Item2.Position;
 
             return Math.Abs( Vector2.Distance( pointA, position ) + Vector2.Distance( pointB, position ) - this.Length ) < float.Epsilon;
+        }
+
+        public Node FindNearestNode( Vector2 position )
+        {
+            return Vector2.Distance( this.Ends.Item1.Position, position ) < Vector2.Distance( this.Ends.Item2.Position, position ) ? this.Ends.Item1 : this.Ends.Item2;
         }
 
         public override string ToString( )

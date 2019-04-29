@@ -1,15 +1,13 @@
 ﻿namespace Final.Agent
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
 
     public class SystemState
     {
-        RobotControlState RobotState { get; }
+        public ControlledWorker Controlled { get; }
 
-        List<IAgent> WorkerStates {get;}
+        public RobotControlState RobotState { get; }
 
-
+        public List<IAgent> WorkerStates { get; }
     }
 }

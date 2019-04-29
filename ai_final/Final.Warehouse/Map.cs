@@ -87,26 +87,6 @@
         [DataMember]
         public List<Segment> Segments { get; }
 
-        public List<Direction> FindPossibleActions( Vector2 position )
-        {
-            throw new NotImplementedException( );
-        }
-
-        public List<Direction> FindPossibleActions( Node node )
-        {
-            throw new NotImplementedException( );
-        }
-
-        public List<Direction> FindPossibleActions( Segment segment )
-        {
-            throw new NotImplementedException( );
-        }
-
-        public async Task<Route> FindShortestRoute( Node start, Node end )
-        {
-            throw new NotImplementedException( );
-        }
-
         public async Task<Node> FindNearestNode( Vector2 position )
         {
             var bottomBound = new Vector2( position.X - this.largestSegment, position.Y - this.largestSegment );
@@ -141,12 +121,32 @@
 
         public Node FindNearestNode( Segment segment, Vector2 position )
         {
-            return segment.FindNearestNode(position);
+            return segment.FindNearestNode( position );
+        }
+
+        public List<Direction> FindPossibleActions( Vector2 position )
+        {
+            throw new NotImplementedException( );
+        }
+
+        public List<Direction> FindPossibleActions( Node node )
+        {
+            throw new NotImplementedException( );
+        }
+
+        public List<Direction> FindPossibleActions( Segment segment )
+        {
+            throw new NotImplementedException( );
         }
 
         public Segment FindSegment( Vector2 position )
         {
             return this.Segments.FirstOrDefault( s => s.ContainsPosition( position ) );
+        }
+
+        public async Task<Route> FindShortestRoute( Node start, Node end )
+        {
+            throw new NotImplementedException( );
         }
 
         public bool IsLegalPosition( Vector2 position )

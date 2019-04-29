@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Final.Agent
+﻿namespace Final.Agent
 {
-    class QConstants
+    internal class QConstants
     {
-        public QConstants(float alpha=0.5f, float epsilon = 0.5f, float discount = 0.9f, int episodes = 500)
+        public QConstants( float alpha = 0.5f, float epsilon = 0.5f, float discount = 0.9f, int episodes = 500 )
         {
             this.LearningRate = alpha;
             this.ExplorationRate = epsilon;
@@ -14,12 +10,12 @@ namespace Final.Agent
             this.TrainingEpisodes = episodes;
         }
 
-        float LearningRate { get; }
+        public float Discount { get; }
 
-        float ExplorationRate { get; }
+        public float ExplorationRate { get; }
 
-        float Discount { get; }
+        public float LearningRate { get; }
 
-        int TrainingEpisodes { get; }
+        public int TrainingEpisodes { get; }
     }
 }
