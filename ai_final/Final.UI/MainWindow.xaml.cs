@@ -22,12 +22,12 @@
             this.InitializeComponent( );
 
             this.Map = new MapVM( new Map( 20, 33 ) );
-            this.Controlled = new ControlledWorkerVM( new ControlledWorker( new Vector2( 1000, 420 ) ) );
+            this.Controlled = new ControlledWorkerVM( new ControlledWorker( new Vector2( 1000, 420 ) ), this.Map.Map );
 
             this.DrawSegments( );
             this.DrawNodes( );
 
-            this.DrawControlledWorker( );
+            this.WarehouseCanvas.Children.Add( this.Controlled.Shape );
         }
 
         public ControlledWorkerVM Controlled { get; set; }
@@ -39,14 +39,6 @@
             var isChecked = ( sender as ToggleButton ).IsChecked;
 
             this.Map.IsManuallyControlled = isChecked ?? false;
-        }
-
-        private void DrawControlledWorker( )
-        {
-            Canvas.SetLeft( this.Controlled.Shape, this.Controlled.Position.X );
-            Canvas.SetTop( this.Controlled.Shape, this.Controlled.Position.Y );
-
-            this.WarehouseCanvas.Children.Add( this.Controlled.Shape );
         }
 
         private void DrawNodes( )
@@ -98,19 +90,19 @@
                 switch( e.Key )
                 {
                     case Key.Left:
-                        this.Controlled.MoveWorker( Direction.West, this.Map.Map );
+                        this.Controlled.Move( Direction.West, this.Map.Map );
                         break;
 
                     case Key.Up:
-                        this.Controlled.MoveWorker( Direction.South, this.Map.Map );
+                        this.Controlled.Move( Direction.South, this.Map.Map );
                         break;
 
                     case Key.Right:
-                        this.Controlled.MoveWorker( Direction.East, this.Map.Map );
+                        this.Controlled.Move( Direction.East, this.Map.Map );
                         break;
 
                     case Key.Down:
-                        this.Controlled.MoveWorker( Direction.North, this.Map.Map );
+                        this.Controlled.Move( Direction.North, this.Map.Map );
                         break;
                 }
             }

@@ -3,10 +3,29 @@
     using System;
     using System.Collections.Generic;
     using System.Numerics;
+    using Final.Agent.Interfaces;
+    using Final.Common;
     using Final.Warehouse;
 
-    public class Worker
+    public class Worker : IWorker
     {
+        public Worker( Vector2 position )
+        {
+            this.Position = position;
+        }
+
+        public Segment CurrentSegment { get => throw new NotImplementedException( ); }
+
+        public Node LastNode { get => throw new NotImplementedException( ); }
+
+        public Vector2 Position { get; }
+
+        public Route Route { get => throw new NotImplementedException( ); }
+
+        public Sensor Sensor { get => throw new NotImplementedException( ); }
+
+        public float Speed { get => throw new NotImplementedException( ); }
+
         public Route BuildRoute( Dictionary<Node, Node> cameFrom, Node start, Node currentNode )
         {
             var nodeList = new List<Node>( );
@@ -93,6 +112,16 @@
             }
 
             // TODO: Remove- Added to get building ( not all code paths return a value)
+            throw new NotImplementedException( );
+        }
+
+        public Vector2 Move( Direction direction, Map warehouse, int timeStep = 1 )
+        {
+            throw new NotImplementedException( );
+        }
+
+        public Route ReRoute( )
+        {
             throw new NotImplementedException( );
         }
     }

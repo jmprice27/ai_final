@@ -67,6 +67,7 @@
     </ApplicationDefinition>
     <Compile Include="ControlledWorkerVM.cs" />
     <Compile Include="RobotVM.cs" />
+    <Compile Include="SegmentVM.cs" />
     <Compile Include="WorkersVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

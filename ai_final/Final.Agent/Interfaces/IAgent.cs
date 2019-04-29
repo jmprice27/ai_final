@@ -1,16 +1,18 @@
 ﻿using Final.Common;
 namespace Final.Agent
 {
+    using System.Numerics;
+    using Final.Agent.Interfaces;
     using Final.Warehouse;
 
-    internal interface IAgent
+    internal interface IAgent : IMoving
     {
-        float Speed { get; }
+        Segment CurrentSegment { get; }
 
-        IPosition Position { get; }
+        Node LastNode { get; }
 
         Route Route { get; }
 
-        IAgentAction Action { get; }
+        Sensor Sensor { get; }
     }
 }

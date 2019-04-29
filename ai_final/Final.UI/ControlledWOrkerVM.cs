@@ -12,7 +12,7 @@
     {
         private readonly ControlledWorker model;
 
-        public ControlledWorkerVM( ControlledWorker worker )
+        public ControlledWorkerVM( ControlledWorker worker, Map warehouse )
         {
             this.model = worker;
             this.Radius = 5;
@@ -27,6 +27,8 @@
                 Opacity = 1,
                 ToolTip = new ToolTip( ) { Content = "Controlled Worker" }
             };
+
+            this.Move( Direction.Stop, warehouse );
         }
 
         public Brush Color { get; }
@@ -43,7 +45,7 @@
 
         public Shape Shape { get; }
 
-        public void MoveWorker( Direction direction, Map warehouse )
+        public void Move( Direction direction, Map warehouse )
         {
             this.model.Move( direction, warehouse );
 

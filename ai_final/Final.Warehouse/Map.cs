@@ -7,6 +7,7 @@
     using System.Numerics;
     using System.Runtime.Serialization;
     using System.Threading.Tasks;
+    using Final.Common;
 
     [DataContract]
     public class Map
@@ -86,12 +87,27 @@
         [DataMember]
         public List<Segment> Segments { get; }
 
+        public List<Direction> FindPossibleActions( Vector2 position )
+        {
+            throw new NotImplementedException( );
+        }
+
+        public List<Direction> FindPossibleActions( Node node )
+        {
+            throw new NotImplementedException( );
+        }
+
+        public List<Direction> FindPossibleActions( Segment segment )
+        {
+            throw new NotImplementedException( );
+        }
+
         public async Task<Route> FindShortestRoute( Node start, Node end )
         {
             throw new NotImplementedException( );
         }
 
-        public async Task<Node> GetNearestNode( Vector2 position )
+        public async Task<Node> FindNearestNode( Vector2 position )
         {
             var bottomBound = new Vector2( position.X - this.largestSegment, position.Y - this.largestSegment );
 
@@ -116,24 +132,19 @@
             return nearestNode;
         }
 
-        //public async Task<Node> GetNearestNode( Vector2 position )
-        //{
-        //    var containingSegment = await this.GetSegment( position );
-
-        //    var distance1 = Vector2.Distance( position, containingSegment.Ends.Item1.Position );
-        //    var distance2 = Vector2.Distance( position, containingSegment.Ends.Item2.Position );
-
-        //    return distance1 < distance2 ? containingSegment.Ends.Item1 : containingSegment.Ends.Item2;
-        //}
-
-        public Node GetNearestNode( Node node )
+        public Node FindNearestNode( Node node )
         {
             var shortestSegment = node.Segments.Aggregate( ( s1, s2 ) => s1.Length < s2.Length ? s1 : s2 );
 
             return shortestSegment.Ends.Item1 == node ? shortestSegment.Ends.Item2 : shortestSegment.Ends.Item1;
         }
 
-        public Segment GetSegment( Vector2 position )
+        public Node FindNearestNode( Segment segment, Vector2 position )
+        {
+            return segment.FindNearestNode(position);
+        }
+
+        public Segment FindSegment( Vector2 position )
         {
             return this.Segments.FirstOrDefault( s => s.ContainsPosition( position ) );
         }
@@ -144,7 +155,7 @@
 
             try
             {
-                legal = this.GetSegment( position ) != null;
+                legal = this.FindSegment( position ) != null;
             }
             catch
             {

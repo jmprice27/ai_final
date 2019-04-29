@@ -1,12 +1,13 @@
 ﻿namespace Final.Agent
 {
-    using System.Numerics;
+    using Final.Agent.Interfaces;
     using Final.Common;
     using Final.Warehouse;
+    using System.Numerics;
 
-    public class ControlledWorker
+    public class ControlledWorker : IMoving
     {
-        public ControlledWorker( Vector2 position, float speed = 1.0f )
+        public ControlledWorker( Vector2 position, float speed = 10.0f )
         {
             this.Position = position;
             this.Speed = speed;
@@ -15,8 +16,10 @@
         public Vector2 Position { get; private set; }
 
         public float Speed { get; }
+        public Segment CurrentSegment { get => throw new System.NotImplementedException( ); }
+        public Node LastNode { get => throw new System.NotImplementedException( ); }
 
-        public Vector2 Move( Direction direction, Map warehouse, int time = 1 )
+        public Vector2 Move( Direction direction, Map warehouse, int timeStep = 1 )
         {
             var possiblePosition = new Vector2( this.Position.X, this.Position.Y );
 
@@ -26,19 +29,19 @@
                     break;
 
                 case Direction.North:
-                    possiblePosition += new Vector2( 0, time * this.Speed );
+                    possiblePosition += new Vector2( 0, timeStep * this.Speed );
                     break;
 
                 case Direction.South:
-                    possiblePosition -= new Vector2( 0, time * this.Speed );
+                    possiblePosition -= new Vector2( 0, timeStep * this.Speed );
                     break;
 
                 case Direction.East:
-                    possiblePosition += new Vector2( time * this.Speed, 0 );
+                    possiblePosition += new Vector2( timeStep * this.Speed, 0 );
                     break;
 
                 case Direction.West:
-                    possiblePosition -= new Vector2( time * this.Speed, 0 );
+                    possiblePosition -= new Vector2( timeStep * this.Speed, 0 );
                     break;
 
                 case Direction.Stop:
@@ -52,5 +55,6 @@
 
             return this.Position;
         }
+
     }
 }

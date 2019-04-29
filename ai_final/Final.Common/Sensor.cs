@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Json;
 
-    internal class Sensor
+    public class Sensor
     {
         private SensorOrientation Orientation { get; }
 
