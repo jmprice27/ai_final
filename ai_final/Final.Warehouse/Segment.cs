@@ -35,6 +35,11 @@
             return Math.Abs( Vector2.Distance( pointA, position ) + Vector2.Distance( pointB, position ) - this.Length ) < float.Epsilon;
         }
 
+        public Node GetOtherEnd(Node thisNode)
+        {
+            return thisNode == this.Ends.Item1 ? this.Ends.Item2 : this.Ends.Item1;
+        }
+
         public Node FindNearestNode( Vector2 position )
         {
             return Vector2.Distance( this.Ends.Item1.Position, position ) < Vector2.Distance( this.Ends.Item2.Position, position ) ? this.Ends.Item1 : this.Ends.Item2;

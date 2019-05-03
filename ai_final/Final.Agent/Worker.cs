@@ -25,8 +25,14 @@
         public Sensor Sensor { get => throw new NotImplementedException( ); }
 
         public float Speed { get => throw new NotImplementedException( ); }
+        public bool HasRoute { get => throw new NotImplementedException( ); }
 
-        public Route BuildRoute( Dictionary<Node, Node> cameFrom, Node start, Node currentNode )
+        public void Advance( )
+        {
+            throw new NotImplementedException( );
+        }
+
+        private Route BuildRoute( Dictionary<Node, Node> cameFrom, Node start, Node currentNode )
         {
             var nodeList = new List<Node>( );
             var segmentList = new List<Segment>( );
@@ -52,7 +58,7 @@
             return new Route( nodeList, segmentList );
         }
 
-        public Route FindRoute( Map map, Node start, Node goal )
+        private Route FindRoute( Map map, Node start, Node goal )
         {
             var explored = new List<Node>( );
             var frontier = new List<Node> { start };
@@ -113,6 +119,11 @@
 
             // TODO: Remove- Added to get building ( not all code paths return a value)
             throw new NotImplementedException( );
+        }
+
+        public void AssignDestination(Node destination)
+        {
+
         }
 
         public Vector2 Move( Direction direction, Map warehouse, int timeStep = 1 )

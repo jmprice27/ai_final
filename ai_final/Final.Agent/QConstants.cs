@@ -1,12 +1,12 @@
 ﻿namespace Final.Agent
 {
-    internal class QConstants
+    public struct QConstants
     {
-        public QConstants( float alpha = 0.5f, float epsilon = 0.5f, float discount = 0.9f, int episodes = 500 )
+        public QConstants( float alpha = 0.5f, float epsilon = 0.5f, float gamma = 0.9f, int episodes = 500 )
         {
             this.LearningRate = alpha;
             this.ExplorationRate = epsilon;
-            this.Discount = discount;
+            this.Discount = gamma;
             this.TrainingEpisodes = episodes;
         }
 

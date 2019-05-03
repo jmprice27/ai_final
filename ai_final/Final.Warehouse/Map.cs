@@ -126,17 +126,43 @@
 
         public List<Direction> FindPossibleActions( Vector2 position )
         {
-            throw new NotImplementedException( );
+            var directions = new List<Direction>( );
+
+            var segment = this.FindSegment( position );
+
+            if (segment != null)
+            {
+                directions.Add( Direction.Stop );
+
+                directions.Add( this.DetermineDirection( position, segment.Ends.Item1.Position) );
+                directions.Add( this.DetermineDirection( position, segment.Ends.Item2.Position ) );
+            }
+
+            return directions;
         }
 
         public List<Direction> FindPossibleActions( Node node )
         {
-            throw new NotImplementedException( );
+            var directions = new List<Direction>( );
+
+            foreach(var segment in node.Segments)
+            {
+                directions.Add( this.DetermineDirection( node.Position, segment.GetOtherEnd( node ).Position ) );
+            }
+
+            directions.Add( Direction.Stop );
+
+            return directions;
         }
 
         public List<Direction> FindPossibleActions( Segment segment )
         {
             throw new NotImplementedException( );
+        }
+
+        public Node FindNode (int id)
+        {
+            return this.Nodes.FirstOrDefault( n => n.Id == id );
         }
 
         public Segment FindSegment( Vector2 position )
@@ -175,6 +201,30 @@
         {
             // TODO: Needed?
             throw new NotImplementedException( );
+        }
+
+        private Direction DetermineDirection(Vector2 currentposition, Vector2 otherPosition)
+        {
+            if( otherPosition.Y > currentposition.Y)
+            {
+                return Direction.North;
+            }
+            else if (otherPosition.Y < currentposition.Y)
+            {
+                return Direction.South;
+            }
+            else if (otherPosition.X > currentposition.X)
+            {
+                return Direction.East;
+            }
+            else if (otherPosition.X < currentposition.X)
+            {
+                return Direction.West;
+            }
+            else
+            {
+                return Direction.Stop;
+            }
         }
     }
 }

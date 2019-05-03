@@ -7,15 +7,18 @@
 
     public class ControlledWorker : IMoving
     {
-        public ControlledWorker( Vector2 position, float speed = 10.0f )
+        public ControlledWorker( Vector2 position, Map map, float speed = 10.0f )
         {
             this.Position = position;
             this.Speed = speed;
+            this.CurrentSegment = map.FindSegment( this.Position );
+
+            this.LastNode = map.FindNearestNode( this.CurrentSegment, this.Position );
         }
 
-        public Segment CurrentSegment { get => throw new System.NotImplementedException( ); }
+        public Segment CurrentSegment { get; private set; }
 
-        public Node LastNode { get => throw new System.NotImplementedException( ); }
+        public Node LastNode { get; private set; }
 
         public Vector2 Position { get; private set; }
 

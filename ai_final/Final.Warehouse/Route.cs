@@ -18,8 +18,6 @@
         {
             get
             {
-                // TODO: Needed?
-
                 var x = 1;
                 return this.Length * x;
             }

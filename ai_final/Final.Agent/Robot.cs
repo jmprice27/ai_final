@@ -5,7 +5,7 @@ using Final.Warehouse;
 
 namespace Final.Agent
 {
-    internal class Robot : IQAgent
+    public class Robot : IQAgent
     {
         public Robot( Vector2 position, QConstants constants, float speed = 10.0f )
         {
@@ -31,10 +31,21 @@ namespace Final.Agent
 
         public Sensor Sensor { get; }
 
-        public float Speed { get; }
+        public float Speed { get; private set; }
 
         // TODO< this might need to be moved elsewhere - probably as a property of nodes
         public float Value { get => throw new NotImplementedException( ); }
+        public bool HasRoute { get => throw new NotImplementedException( ); }
+
+        public void Advance( )
+        {
+            throw new NotImplementedException( );
+        }
+
+        public void AssignDestination( Node destination )
+        {
+            throw new NotImplementedException( );
+        }
 
         public Vector2 Move( Direction direction, Map warehouse, int timeStep )
         {

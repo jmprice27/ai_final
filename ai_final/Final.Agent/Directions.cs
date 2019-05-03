@@ -10,6 +10,8 @@
 
         East = 3,
 
-        West = 4
+        West = 4,
+
+        Stop = 5
     }
 }

@@ -4,7 +4,7 @@
     using Final.Common;
     using Final.Warehouse;
 
-    internal interface IMoving
+    public interface IMoving
     {
         Vector2 Position { get; }
 

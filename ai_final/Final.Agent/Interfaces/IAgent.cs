@@ -13,5 +13,10 @@
         Route Route { get; }
 
         Sensor Sensor { get; }
+        bool HasRoute { get; }
+
+        void Advance( );
+
+        void AssignDestination( Node destination );
     }
 }

@@ -22,7 +22,7 @@
             this.InitializeComponent( );
 
             this.Map = new MapVM( new Map( 20, 33 ) );
-            this.Controlled = new ControlledWorkerVM( new ControlledWorker( new Vector2( 1000, 420 ) ), this.Map.Map );
+            this.Controlled = new ControlledWorkerVM( new ControlledWorker( new Vector2( 1000, 420 ), this.Map.Map ), this.Map.Map);
 
             this.DrawSegments( );
             this.DrawNodes( );
